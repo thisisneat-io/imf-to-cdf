@@ -3,9 +3,9 @@ requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "neat-imf-to-neat"
+name = "imf-to-cdf"
 version = "0.1.0"
-description = "IMF ontology → NEAT physical data model plugin"
+description = "IMF ontology to CDF data model plugin for neat"
 authors = [
     {name = "POSC Caesar Association"},
 ]
