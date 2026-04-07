@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=69.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "neat-imf-to-neat"
+version = "0.1.0"
+description = "IMF ontology → NEAT physical data model plugin"
+authors = [
+    {name = "POSC Caesar Association"},
+]
+license = "Apache-2.0"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "cognite-neat>=0.123.4",
+    "rdflib>=7.0.0",
+    "PyYAML>=6.0.1",
+    "requests>=2.28.1",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["imf_to_neat*"]
+
+# ── NEAT v1 plugin entry point ──────────────────────────────────────────────
+# Registers the plugin so it is callable as:
+#   neat.physical_data_model.read.imf(io="path/to/file.ttl", clean=True, ...)
+# Requires: config.alpha.enable_plugins = True
+[project.entry-points."cognite.neat.plugin.data_model.readers"]
+imf = "imf_to_neat.plugin:IMFToNeatPlugin"
+
+# ── Optional CLI entry point ────────────────────────────────────────────────
+# After installation, run:  imf-to-neat file.ttl --clean --optimize-containers
+[project.scripts]
+imf-to-neat = "imf_to_neat.cli:main"
